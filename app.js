@@ -22,6 +22,9 @@ app.engine('.hbs', exphbs.engine({defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 app.set('views', './views');
 
+// Routes
+app.use('/', require('./routes/index'))
+
 
 const PORT = process.env.PORT || 5000// if port 3000 is not working redirect to port 5000
 

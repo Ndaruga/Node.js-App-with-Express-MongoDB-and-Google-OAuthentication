@@ -3,6 +3,7 @@ const dotenv = require ('dotenv')
 const connectDB = require('./config/db')
 const morgan = require('morgan')
 const exphbs = require('express-handlebars')
+const path = require('path')
 
 
 
@@ -25,6 +26,8 @@ app.set('views', './views');
 // Routes
 app.use('/', require('./routes/index'))
 
+// static
+app.use(express.static(path.join(__dirname, 'public')))
 
 const PORT = process.env.PORT || 5000// if port 3000 is not working redirect to port 5000
 

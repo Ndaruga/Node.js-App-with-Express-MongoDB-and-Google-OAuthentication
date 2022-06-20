@@ -5,7 +5,7 @@ const morgan = require('morgan')
 const exphbs = require('express-handlebars')
 const path = require('path')
 const passport = require('passport')
-const session = require('express-sesions')
+const session = require('express-session')
 
 
 

@@ -5,7 +5,7 @@ const morgan = require('morgan')
 const exphbs = require('express-handlebars')
 const path = require('path')
 const passport = require('passport')
-const session = reqiure('express-sesions')
+const session = require('express-sesions')
 
 
 
@@ -30,6 +30,7 @@ app.set('views', './views');
 
 // Routes
 app.use('/', require('./routes/index'))
+app.use('/', require('./routes/auth'))
 
 // Sessions
 app.use(session({

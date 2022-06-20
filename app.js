@@ -4,6 +4,8 @@ const connectDB = require('./config/db')
 const morgan = require('morgan')
 const exphbs = require('express-handlebars')
 const path = require('path')
+const passport = require('passport')
+const session = reqiure('express-sesions')
 
 
 
@@ -18,6 +20,9 @@ if (process.env.NODE_ENV === 'developement'){
     app.use(morgan('dev'))
 }
 
+// Passport config
+require('./config/passport')(passport)
+
 // Handle bars
 app.engine('.hbs', exphbs.engine({defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
@@ -25,6 +30,16 @@ app.set('views', './views');
 
 // Routes
 app.use('/', require('./routes/index'))
+
+// Sessions
+app.use(session({
+    secret: 'Keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}))
+// passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
 
 // static
 app.use(express.static(path.join(__dirname, 'public')))
